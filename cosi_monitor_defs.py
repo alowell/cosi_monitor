@@ -258,7 +258,7 @@ def RsyncText(String):
 	try:
 		
 		Timestamp = time.strftime("%B %d %Y %H:%M:%S -- ",time.localtime())
-		f = open("/home/cosi/cosi-monitor/last_update.dat","w")
+		f = open("/home/cosi/cosi_monitor/last_update.dat","w")
 		f.write(Timestamp+String+'\n')
 		f.close()
 
@@ -279,6 +279,11 @@ def RsyncText(String):
 		#raise Exception("Problem with Rsync")
 		print "Problem with rsync"
       
+	
+	
+	sp.call(['git','add','.'])
+	sp.call(['git','commit','-m','"update"'])
+	sp.call(['git','push','origin','master'])
 	
       
       
