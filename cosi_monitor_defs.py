@@ -134,7 +134,7 @@ def SendTexts(TxString):
       
       TextList = []
       
-      with open('phone_numbers','r') as f:
+      with open('/home/cosi/phone_numbers','r') as f:
 	    for line in f:
 		  z = line.split(',')
 		  if len(z) == 3:
