@@ -1,0 +1,19 @@
+4/8/14
+
+in order to detect if power is on, i could make a quick liitle atmega project with serial interface.  the atmega power would come from the wall wart and then there
+
+OK probably want two network interfaces: the USB one and the ethernet.  have these both configured, use the USB one primarily.  if a ping can't get through the USB, restart the 
+USB interface, switch over to ethernet if possible, and try again to 
+
+might want a separate thread that accepts texts and returns to you the status of the temperature and power
+
+4/9/14
+
+TODO:
+
+- double check all library functions for exceptions
+- get a version that will text the cryostat temperature once an hour
+- figure out a scheme to update files on apollo html for easy check in.
+- write a separate set up commands to easily connect to lakeshore box and log data
+  just go thru history on this machine for the right commands
+  

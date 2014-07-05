@@ -1,0 +1,81 @@
+import smtplib
+import time
+
+########################################################################################################################
+
+def GetCryoTemp():
+      
+      #returns two things:
+      #string,Err
+      #if Err = 0, then string is the cryocooler temperature as a string (call float(string) to get a float)
+      #if Err = 1, then the returned string is an error string that tells you what type of error occured
+
+      import serial
+      
+      CorrectPort = False
+      PortList = ['/dev/ttyUSB0','/dev/ttyUSB1','/dev/ttyUSB2']
+      
+      for Port in PortList:
+	    try:
+		  port = serial.Serial( port=Port,baudrate=4800, bytesize=8, parity='N', stopbits=1)
+		  port.setTimeout(0.1) #100 ms timeout
+		  port.write('SERIAL\r')
+		  RecvString = port.read(100)
+		  if RecvString[0:3] == 'REV':
+			CorrectPort = True
+			break
+	    except:
+		  print "GetCryoTemp: Problem opening/verifying serial port!" 
+      
+      if CorrectPort:
+	    try:
+		  port.write('TC\r')
+		  RecvString = port.read(100)
+		  if len(RecvString) > 0:
+			try:
+			      
+			      Temperature = float(RecvString) #test for float type
+			      return RecvString,0
+			      
+			except ValueError:
+			      
+			      print "GetCryoTemp: Couldn't parse received TC string! Didn't get a float..."
+			      return "ERROR_TC",1
+			      
+	    except:
+		  
+      else:
+	    print "GetCryoTemp: Couldn't find the Cryocontroller serial port!"
+	    return "ERROR_NOCRYO",1
+	    
+	    
+	    
+#######################################################################################################################
+
+def SendTexts(String):
+      
+      return 0
+      
+      
+#######################################################################################################################
+
+
+                                  ###########   MAIN    #############
+
+
+while(True):
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+

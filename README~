@@ -1,0 +1,30 @@
+4/8/14
+
+in order to detect if power is on, i could make a quick liitle atmega project with serial interface.  the atmega power would come from the wall wart and then there
+
+OK probably want two network interfaces: the USB one and the ethernet.  have these both configured, use the USB one primarily.  if a ping can't get through the USB, restart the 
+USB interface, switch over to ethernet if possible, and try again to 
+
+might want a separate thread that accepts texts and returns to you the status of the temperature and power
+
+
+
+   
+import time
+
+State = "OK"
+#other values for State are "PROBLEM_TEMPERATURE", "PROBLEM_POWER", "PROBLEM_TEMPERATURE_AND_POWER"
+
+TemperatureThreshold = 80.0
+
+while(True):
+      
+      time.sleep(1)
+      
+      #check that we are connected to the internet, use USB modem as default, switch to ethernet if USB goes out
+      
+      #get the cryo temperature
+      
+      #check if there is wall power
+      
+      # form the text message and send it out if necessary

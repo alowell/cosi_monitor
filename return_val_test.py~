@@ -1,0 +1,11 @@
+def Test():
+
+     
+      return  "hello",1
+      
+      
+x,y = Test()
+
+print y
+print x
+

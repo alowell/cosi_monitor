@@ -1,0 +1,1 @@
+rsync -e 'ssh -p 36867' textlog_tail.dat alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html

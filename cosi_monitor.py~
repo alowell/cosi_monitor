@@ -1,0 +1,88 @@
+from cosi_monitor_defs import *
+import time, sched
+
+NumSeconds = 60
+NormalInterval = 60 #in minutes
+
+UpdateInterval = NormalInterval
+UpdateCounter = UpdateInterval
+EmergencyInterval = 10
+Emergency = False
+
+CryotelGuess = '/dev/ttyUSB0'
+
+while(True):
+
+	try:
+		Lakeshore = GrabLastLakeshoreTemp()
+	except:
+		Lakeshore = "CF-Err"
+	
+	try:
+		Cryotel_T = GetCryoTemp(CryotelGuess)
+	except:
+		Cryotel_T = "CT-Err"
+
+	try:
+		Cryotel_P = GetCryoPower(CryotelGuess)
+	except:
+		Cryotel_P = "CT-Err"
+
+	
+	StatusString = Lakeshore+' '+Cryotel_T+' '+Cryotel_P
+	LogText(StatusString)	
+
+	try:
+		RsyncText(StatusString)
+	except:
+		LogText("RsyncError")
+
+	if (Cryotel_T == "CT-Err") and (Emergency == False):
+		#enter emergency mode
+		Emergency = True
+		SendTexts(StatusString)
+		LogText("Emergency detected: "+StatusString)
+		UpdateInterval = EmergencyInterval
+		UpdateCounter = EmergencyInterval + 1
+
+	if (Cryotel_T != "CT-Err") and (Emergency == True):
+		#exit emergency mode, somehow things recovered
+		Emergency = False
+		SendTexts("Emergency probably resolved... stay tuned")
+		SendTexts(StatusString)
+		LogText("Emergency resolved: "+StatusString)
+		UpdateInterval = NormalInterval
+		UpdateCounter = NormalInterval + 1
+		
+	UpdateCounter = UpdateCounter - 1
+	if UpdateCounter == 0:
+
+		UpdateCounter = UpdateInterval #reset counter
+		
+		if Emergency == True:
+			try:
+				SendTexts(StatusString)						
+			except:
+				pass
+	
+	time.sleep(NumSeconds)
+
+
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
