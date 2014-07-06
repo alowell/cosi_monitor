@@ -59,7 +59,10 @@ while(True):
 	if BoolEmergency and (Emergency == False):
 		#enter emergency mode
 		Emergency = True
-		SendTexts(StatusString)
+		try:
+			SendTexts(StatusString)
+		except:
+			print "Problem sending texts"
 		LogText("Emergency detected: "+StatusString)
 		UpdateInterval = EmergencyInterval
 		UpdateCounter = EmergencyInterval + 1
@@ -67,8 +70,11 @@ while(True):
 	if (not BoolEmergency) and (Emergency == True):
 		#exit emergency mode, somehow things recovered
 		Emergency = False
-		SendTexts("Emergency probably resolved... stay tuned")
-		SendTexts(StatusString)
+		try:
+			SendTexts("Emergency probably resolved... stay tuned")
+			SendTexts(StatusString)
+		except:
+			print "Problem sending texts"
 		LogText("Emergency resolved: "+StatusString)
 		UpdateInterval = NormalInterval
 		UpdateCounter = NormalInterval + 1
