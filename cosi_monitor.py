@@ -9,7 +9,7 @@ UpdateInterval = NormalInterval
 UpdateCounter = UpdateInterval
 EmergencyInterval = 10
 Emergency = False
-EmergencyTemp = 90.0
+EmergencyTemp = 91.0
 
 
 CryotelGuess = '/dev/ttyUSB0'
