@@ -54,7 +54,8 @@ while(True):
 		Lakeshore = "CF "+"500.0 "+"500.0"
 		StatusString = Lakeshore+' '+Cryotel_T+' '+Cryotel_P
 		
-	BoolEmergency = (Cryotel_T == "CT-Err") or (Temp1 > EmergencyTemp) or (Temp2 > EmergencyTemp)
+	#BoolEmergency = (Cryotel_T == "CT-Err") or (Temp1 > EmergencyTemp) or (Temp2 > EmergencyTemp)
+	BoolEmergency = (Cryotel_T == "CT-Err") 
 
 	if BoolEmergency and (Emergency == False):
 		#enter emergency mode
