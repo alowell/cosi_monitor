@@ -232,7 +232,7 @@ def GrabLastLakeshoreTemp():
       import subprocess as sp
       import re
       
-      output = sp.check_output(['tail','/home/cosi/cosi-monitor/log.dat'])
+      output = sp.check_output(['tail','/home/cosi/cosi_monitor/log.dat'])
       #output = sp.check_output(['tail','/home/cosi/tmp/cryo/temp_log.dat'])	
       
       lines = output.split('\n')
