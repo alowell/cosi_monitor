@@ -232,19 +232,19 @@ def GrabLastLakeshoreTemp():
       import subprocess as sp
       import re
       
-      output = sp.check_output(['tail','/home/cosi/cosi_monitor/log.dat'])
-      #output = sp.check_output(['tail','/home/cosi/tmp/cryo/temp_log.dat'])	
+      #output = sp.check_output(['tail','/home/cosi/cosi_monitor/log.dat'])
+      output = sp.check_output(['tail','/home/cosi/tmp/cryo/temp_log.dat'])	
       
       lines = output.split('\n')
       
       numlines = len(lines)
       
       for i in reversed(lines):
-	#m = re.findall('\d:\+\d+\.\d+K',i)
-	m = re.findall('\d+\.\d+',i)
+	m = re.findall('\d:\+\d+\.\d+K',i)
+	#m = re.findall('\d+\.\d+',i)
 	if len(m) == 2:
-		#return 'CF '+m[0]+'K '+m[1]+'K COL '+m[2]
-		return 'CF '+m[0]+'K '+m[1]+'K'
+		return 'CF '+m[0]+'K '+m[1]+'K COL '+m[2]
+		#return 'CF '+m[0]+'K '+m[1]+'K'
 	
       raise ValueError("Couldn't find a string with two temperatures in it.")
 
