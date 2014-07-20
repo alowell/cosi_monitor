@@ -240,8 +240,8 @@ def GrabLastLakeshoreTemp():
       numlines = len(lines)
       
       for i in reversed(lines):
-	m = re.findall('\d:\+\d+\.\d+K',i)
-	#m = re.findall('\d+\.\d+',i)
+	#m = re.findall('\d:\+\d+\.\d+K',i)
+	m = re.findall('\d+\.\d+',i)
 	if len(m) == 2:
 		return 'CF '+m[0]+'K '+m[1]+'K COL '+m[2]
 		#return 'CF '+m[0]+'K '+m[1]+'K'
