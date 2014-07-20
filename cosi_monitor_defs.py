@@ -264,17 +264,17 @@ def RsyncText(String):
 		f.close()
 
 		#sp.call(['scp','-P','36867','/home/cosi/cosi-monitor/textlog.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
-#		sp.call(['scp','-P','36867','/home/cosi/cosi-monitor/last_update.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
+		#sp.call(['scp','-P','36867','/home/cosi/cosi-monitor/last_update.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
 
 	
-		#sp.call(['rsync','-e',"ssh -p 36867",'/home/cosi/cosi_monitor/last_update.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
+		sp.call(['rsync','-e',"ssh -p 36867",'/home/cosi/cosi_monitor/last_update.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
 
 				
-		#sp.call(['rsync','-e',"ssh -p 36867",'/home/cosi/cosi_monitor/textlog.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
+		sp.call(['rsync','-e',"ssh -p 36867",'/home/cosi/cosi_monitor/textlog.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
 		tail_output = sp.check_output(['tail','-n','100','textlog.dat'])
 		with fopen("textlog_tail.dat","w") as f:
 			f.write(tail_output)
-		#sp.call(['rsync','-e',"ssh -p 36867",'/home/cosi/cosi_monitor/textlog_tail.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
+		sp.call(['rsync','-e',"ssh -p 36867",'/home/cosi/cosi_monitor/textlog_tail.dat','alowell@apollo.ssl.berkeley.edu:/home/alowell/public_html'])
 
 	except:
 		#raise Exception("Problem with Rsync")
