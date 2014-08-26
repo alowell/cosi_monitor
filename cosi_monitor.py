@@ -12,7 +12,7 @@ Emergency = False
 EmergencyTemp = 91.0
 
 
-CryotelGuess = '/dev/ttyUSB0'
+CryotelGuess = '/dev/ttyUSB1'
 
 while(True):
 
